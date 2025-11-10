@@ -504,10 +504,18 @@ async def root():
 
 
 
+# if __name__ == "__main__":
+#     import uvicorn
+#     # This print statement helps confirm execution started
+#     print("Loading BLIP model and starting Uvicorn server...") 
+#     # The lifespan context manager will handle model loading before accepting requests
+#     # Changed host to 0.0.0.0 to allow connections from physical devices on the network
+
+#     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
+
+
 if __name__ == "__main__":
     import uvicorn
-    # This print statement helps confirm execution started
-    print("Loading BLIP model and starting Uvicorn server...") 
-    # The lifespan context manager will handle model loading before accepting requests
-    # Changed host to 0.0.0.0 to allow connections from physical devices on the network
-    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+    port = int(os.environ.get("PORT", 10000))  # Render uses PORT env variable
+    uvicorn.run(app, host="0.0.0.0", port=port, log_level="info")
